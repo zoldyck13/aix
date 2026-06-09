@@ -23,7 +23,7 @@ target_include_directories(aix PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}/src/cli
     ${CMAKE_CURRENT_SOURCE_DIR}/src/network
-    ${CMAKE_CURRENT_SOURCE_DIR}/scr/utils
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/utils
     ${CURLPP_INCLUDE_DIR}
 )
 

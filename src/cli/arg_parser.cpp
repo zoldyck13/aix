@@ -14,6 +14,10 @@ namespace aix {
     if (aix.get_option_no_throw("--sed") == nullptr) {
       aix.add_option("--sed", options.sed_target, "Select lines inside files by numbers");
     }
+    
+    if (aix.get_option_no_throw("--file-path") == nullptr) {
+      aix.add_option("--file-path", options.file_path, "Location of the file");
+    }
 
     try {
       aix.parse(argc, argv);

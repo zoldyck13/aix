@@ -8,6 +8,8 @@ namespace aix {
   struct ConfigOptions {
     std::string prompt = "";
     std::string sed_target = "";
+    std::string file_path = "";
+    std::string file_content = "";
     int sed_start_line, sed_end_line = 0;
   };
 
