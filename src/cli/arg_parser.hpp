@@ -1,9 +1,15 @@
 #pragma once
 
 #include <CLI/CLI.hpp>
-#include <string.h>
+#include <string>
 
 namespace aix {
+  
+  struct ConfigOptions {
+    std::string prompt = "";
+    std::string sed_target = "";
+  };
+
   class ArgParser {
     private:
       CLI::App aix{"aix"};
@@ -12,8 +18,8 @@ namespace aix {
     public:
     
       ArgParser() = default;
-    
-      std::string GetContentText(const int argc, char** argv);
+      
+      ConfigOptions ParseArgument(const int argc, char** argv);
   };   
 
 }
