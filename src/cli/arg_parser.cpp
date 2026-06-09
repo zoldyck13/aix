@@ -4,21 +4,23 @@
 
 
 namespace aix {
+  ConfigOptions ArgParser::ParseArgument(const int argc, char** argv) {
+    ConfigOptions options;
 
-  std::string ArgParser::GetContentText(const int argc, char** argv) {
-    std::string temp_str = "";
+    if (aix.get_option_no_throw("-p") == nullptr) {
+      aix.add_option("-p", options.prompt, "Prompt message");
+    }
 
-    if (aix.get_option_no_throw("-m") == nullptr) {
-      aix.add_option("-p", temp_str, "Prompt message");
+    if (aix.get_option_no_throw("--sed") == nullptr) {
+      aix.add_option("--sed", options.sed_target, "Select lines inside files by numbers");
     }
 
     try {
       aix.parse(argc, argv);
     } catch (const CLI::ParseError &e) {
-      return std::to_string(aix.exit(e));
+      aix.exit(e);
     }
 
-    return temp_str;
+    return options;
   }
-
 }
