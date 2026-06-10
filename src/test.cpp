@@ -8,7 +8,7 @@ int main(int argc, char** argv) {
   parser.ParseArgument(argc, argv, options);
   
   //Testing ReadFileContents
-  std::string content = FileSystem::ReadFileContents(options.file_path, options.sed_start_line, options.sed_end_line);
+  std::string content = aix::ReadFileContents(options.file_path, options.sed_start_line, options.sed_end_line);
 
 
   std::cout << content << std::endl;

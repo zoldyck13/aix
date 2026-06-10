@@ -21,7 +21,7 @@ namespace aix {
 
     try {
       aix.parse(argc, argv);
-      std::tie(options.sed_start_line, options.sed_end_line) = FileSystem::ExtractSedNumbers(options.sed_target);
+      std::tie(options.sed_start_line, options.sed_end_line) = aix::ExtractSedNumbers(options.sed_target);
     } catch (const CLI::ParseError &e) {
       aix.exit(e);
     }
