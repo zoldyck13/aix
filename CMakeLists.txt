@@ -7,6 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(CLI11 REQUIRED)
 
+find_package(CURL REQUIRED)
 find_library(CURLPP_LIBRARY NAMES curlpp REQUIRED)
 find_path(CURLPP_INCLUDE_DIR NAMES curlpp/cURLpp.hpp REQUIRED)
 
@@ -25,9 +26,11 @@ target_include_directories(aix PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src/network
     ${CMAKE_CURRENT_SOURCE_DIR}/src/utils
     ${CURLPP_INCLUDE_DIR}
+    ${CURL_INCLUDE_DIRS}
 )
 
 target_link_libraries(aix PRIVATE
     ${CURLPP_LIBRARY}
+    CURL::libcurl
     CLI11::CLI11
 )
