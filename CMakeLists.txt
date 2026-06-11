@@ -12,10 +12,10 @@ find_library(CURLPP_LIBRARY NAMES curlpp REQUIRED)
 find_path(CURLPP_INCLUDE_DIR NAMES curlpp/cURLpp.hpp REQUIRED)
 
 set(POJECT_SOURCES
+    src/main.cpp
     src/cli/arg_parser.cpp 
     src/network/http_client.cpp
     src/utils/file_system.cpp
-    src/test.cpp
 )
 
 add_executable(aix ${POJECT_SOURCES})
@@ -34,3 +34,7 @@ target_link_libraries(aix PRIVATE
     CURL::libcurl
     CLI11::CLI11
 )
+
+enable_testing()
+
+add_subdirectory(tests)
