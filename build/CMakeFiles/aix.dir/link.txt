@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/aix.dir/src/main.cpp.o CMakeFiles/aix.dir/src/cli/arg_parser.cpp.o CMakeFiles/aix.dir/src/network/http_client.cpp.o CMakeFiles/aix.dir/src/utils/file_system.cpp.o -o aix  /usr/lib/x86_64-linux-gnu/libcurlpp.so /usr/lib/x86_64-linux-gnu/libcurl.so 

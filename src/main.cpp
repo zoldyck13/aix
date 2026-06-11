@@ -1,15 +1,15 @@
 // src/main.cpp
 #include "cli/arg_parser.hpp"
-#include <cstdlib>
 #include <iostream>
+#include <cstdlib>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     aix::ArgParser parser;
     aix::ConfigOptions options;
 
     try {
         parser.ParseArgument(argc, argv, options);
-    } catch (const std::exception &e) {
+    } catch (const std::exception& e) {
         std::cerr << "Error parsing arguments: " << e.what() << "\n";
         return EXIT_FAILURE;
     }
