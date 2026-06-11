@@ -1,13 +1,13 @@
 // tests/test_network.cpp
 #include "../src/network/http_client.hpp"
-#include <iostream>
 #include <cstdlib>
+#include <iostream>
 
 int main() {
     aix::HttpClient client;
 
     std::string url = "https://httpbin.org/post";
-    
+
     std::string json_payload = R"({"title": "test", "body": "testing aix network module"})";
 
     std::cout << "Sending POST request to " << url << "...\n";
@@ -22,7 +22,7 @@ int main() {
             return EXIT_FAILURE;
         }
 
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cerr << "Test Crashed with exception: " << e.what() << "\n";
         return EXIT_FAILURE;
     }

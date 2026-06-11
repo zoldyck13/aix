@@ -17,12 +17,16 @@ jobs:
     - name: Install System Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libcurl4-openssl-dev libcli11-dev cmake build-essential
+        sudo apt-get install -y libcurl4-openssl-dev libcli11-dev cmake build-essential clang-format
 
     - name: Install curlpp (if available via apt)
       run: |
         sudo apt-get install -y libcurlpp-dev || echo "curlpp not found in apt, building from source might be needed"
 
+    - name: Run Clang-Format Inspection
+      run: |
+        find src/ tests/ -iname '*.hpp' -o -iname '*.cpp' | xargs clang-format --dry-run --Werror
+    
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
 

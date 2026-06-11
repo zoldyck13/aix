@@ -1,8 +1,9 @@
-#pragma once 
-#include <utility>
+#pragma once
 #include <string>
+#include <utility>
 
-namespace aix{
-    std::pair<int, int> ExtractSedNumbers(const std::string& target);
-    std::string ReadFileContents(const std::string& file_path, const int& start_line_number, const int& end_line_number);
-}
+namespace aix {
+std::pair<int, int> ExtractSedNumbers(const std::string &target);
+std::string ReadFileContents(const std::string &file_path, const int &start_line_number,
+                             const int &end_line_number);
+} // namespace aix
