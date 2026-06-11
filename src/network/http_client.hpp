@@ -3,15 +3,14 @@
 
 #include <string>
 
-
 namespace aix {
-  class HttpClient {
-    public:
-      HttpClient() = default;
-      ~HttpClient() = default;
+class HttpClient {
+  public:
+    HttpClient() = default;
+    ~HttpClient() = default;
 
-      std::string post(const std::string& url, const std::string& json_payload);
-  };
-}
+    std::string post(const std::string &url, const std::string &json_payload);
+};
+} // namespace aix
 
 #endif

@@ -33,3 +33,7 @@ jobs:
       run: |
         cd build
         ctest --output-on-failure
+
+    - name: Check Code Formatting
+      run: |
+        find src/ tests/ -iname '*.hpp' -o -iname '*.cpp' | xargs clang-format --dry-run --Werror
