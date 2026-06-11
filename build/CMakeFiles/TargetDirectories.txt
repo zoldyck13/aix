@@ -1,0 +1,10 @@
+/home/mohammed/aix/build/CMakeFiles/aix.dir
+/home/mohammed/aix/build/CMakeFiles/test.dir
+/home/mohammed/aix/build/CMakeFiles/edit_cache.dir
+/home/mohammed/aix/build/CMakeFiles/rebuild_cache.dir
+/home/mohammed/aix/build/tests/CMakeFiles/cli_test_runner.dir
+/home/mohammed/aix/build/tests/CMakeFiles/network_test_runner.dir
+/home/mohammed/aix/build/tests/CMakeFiles/utils_test_runner.dir
+/home/mohammed/aix/build/tests/CMakeFiles/test.dir
+/home/mohammed/aix/build/tests/CMakeFiles/edit_cache.dir
+/home/mohammed/aix/build/tests/CMakeFiles/rebuild_cache.dir

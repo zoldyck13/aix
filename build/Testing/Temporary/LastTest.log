@@ -1,0 +1,73 @@
+Start testing: Jun 11 14:04 +03
+----------------------------------------------------------
+1/3 Testing: CLI_Tests
+1/3 Test: CLI_Tests
+Command: "/home/mohammed/aix/build/tests/cli_test_runner"
+Directory: /home/mohammed/aix/build/tests
+"CLI_Tests" start time: Jun 11 14:04 +03
+Output:
+----------------------------------------------------------
+CLI Parsing Test Passed Successfully!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"CLI_Tests" end time: Jun 11 14:04 +03
+"CLI_Tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: Network_Tests
+2/3 Test: Network_Tests
+Command: "/home/mohammed/aix/build/tests/network_test_runner"
+Directory: /home/mohammed/aix/build/tests
+"Network_Tests" start time: Jun 11 14:04 +03
+Output:
+----------------------------------------------------------
+Sending POST request to https://httpbin.org/post...
+Response received successfully:
+{
+  "args": {}, 
+  "data": "{\"title\": \"test\", \"body\": \"testing aix network module\"}", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Accept": "*/*", 
+    "Content-Length": "55", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "X-Amzn-Trace-Id": "Root=1-6a2a9628-540462954963a10023cd3c4d"
+  }, 
+  "json": {
+    "body": "testing aix network module", 
+    "title": "test"
+  }, 
+  "origin": "169.224.107.231", 
+  "url": "https://httpbin.org/post"
+}
+
+Network POST Test Passed successfully!
+<end of output>
+Test time =   2.07 sec
+----------------------------------------------------------
+Test Passed.
+"Network_Tests" end time: Jun 11 14:04 +03
+"Network_Tests" time elapsed: 00:00:02
+----------------------------------------------------------
+
+3/3 Testing: Utils_Tests
+3/3 Test: Utils_Tests
+Command: "/home/mohammed/aix/build/tests/utils_test_runner"
+Directory: /home/mohammed/aix/build/tests
+"Utils_Tests" start time: Jun 11 14:04 +03
+Output:
+----------------------------------------------------------
+Utils FileSystem Test Passed Successfully!
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"Utils_Tests" end time: Jun 11 14:04 +03
+"Utils_Tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 11 14:04 +03
