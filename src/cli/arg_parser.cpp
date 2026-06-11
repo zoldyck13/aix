@@ -1,5 +1,6 @@
 #include "arg_parser.hpp"
 #include "CLI/CLI.hpp"
+#include <cstdlib>
 #include <string>
 #include <tuple>
 #include "../utils/file_system.hpp"

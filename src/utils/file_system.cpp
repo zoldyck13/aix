@@ -25,7 +25,6 @@ namespace aix {
     std::ifstream file_stream(file_path);
     if (!file_stream.is_open()) {
       std::cerr << "Error: Could not open " << file_path << std::endl;
-      exit(EXIT_FAILURE);
     }
 
     std::string current_line;
