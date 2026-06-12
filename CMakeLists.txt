@@ -11,10 +11,26 @@ find_package(CURL REQUIRED)
 
 find_library(CURLPP_LIBRARY NAMES curlpp REQUIRED)
 find_path(CURLPP_INCLUDE_DIR NAMES curlpp/cURLpp.hpp REQUIRED)
+find_program(GLOW_BIN glow)
+
+if(NOT GLOW_BIN)
+    message(FATAL_ERROR 
+        "\n"
+        "=================================================================\n"
+        " ERROR: Required command-line utility 'glow' was not found!\n"
+        " Please install 'glow' to continue. On Arch Linux, you can run:\n"
+        "   sudo pacman -S glow\n"
+        "=================================================================\n"
+    )
+endif()
+
+message(STATUS "Found glow: ${GLOW_BIN}")
+
 
 set(POJECT_SOURCES
     src/main.cpp
     src/cli/arg_parser.cpp 
+    src/cli/formatter.cpp
     src/network/http_client.cpp
     src/utils/file_system.cpp
     src/network/api_handler.cpp
