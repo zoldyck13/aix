@@ -28,3 +28,12 @@ add_executable(utils_test_runner ${UTILS_TEST_FILES})
 target_link_libraries(utils_test_runner PRIVATE CURL::libcurl ${CURLPP_LIBRARY}) 
 target_include_directories(utils_test_runner PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 add_test(NAME Utils_Tests COMMAND utils_test_runner) 
+
+set(API_HANDLER_TEST_FILES
+    test_api_handler.cpp
+    ../src/network/api_handler.cpp
+)
+add_executable(api_handler_test_runner ${API_HANDLER_TEST_FILES})
+target_link_libraries(api_handler_test_runner PRIVATE nlohmann_json::nlohmann_json Catch2::Catch2 Catch2::Catch2WithMain)
+target_include_directories(api_handler_test_runner PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
+add_test(NAME Api_Tests COMMAND api_handler_test_runner)

@@ -6,8 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(CLI11 REQUIRED)
-
+find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
+
 find_library(CURLPP_LIBRARY NAMES curlpp REQUIRED)
 find_path(CURLPP_INCLUDE_DIR NAMES curlpp/cURLpp.hpp REQUIRED)
 
@@ -16,6 +17,7 @@ set(POJECT_SOURCES
     src/cli/arg_parser.cpp 
     src/network/http_client.cpp
     src/utils/file_system.cpp
+    src/network/api_handler.cpp
 )
 
 add_executable(aix ${POJECT_SOURCES})
@@ -33,8 +35,13 @@ target_link_libraries(aix PRIVATE
     ${CURLPP_LIBRARY}
     CURL::libcurl
     CLI11::CLI11
+    Catch2::Catch2
+    Catch2::Catch2WithMain
+    nlohmann_json::nlohmann_json
 )
 
 enable_testing()
+
+find_package(Catch2 REQUIRED)
 
 add_subdirectory(tests)
