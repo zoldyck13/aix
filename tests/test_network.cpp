@@ -6,7 +6,7 @@
 int main() {
     aix::HttpClient client;
 
-    std::string url = "https://echo.free.beeceptor.com";
+    std::string url = "https://httpbin.org/post";
 
     std::string json_payload = R"({"title": "test", "body": "testing aix network module"})";
 
