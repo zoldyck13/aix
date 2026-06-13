@@ -3,8 +3,11 @@
 #include "cli/formatter.hpp"
 #include "network/api_handler.hpp"
 #include "network/http_client.hpp"
+#include "utils/file_system.hpp"
 #include <cstdlib>
+#include <curlpp/cURLpp.hpp>
 #include <exception>
+#include <future>
 #include <iostream>
 
 int main(int argc, char *argv[]) {
@@ -20,6 +23,9 @@ int main(int argc, char *argv[]) {
 
     // std::cout << "aix executed successfully with specified configurations.\n";
 
+    curlpp::Cleanup cleanup;
+    std::string gemini_response = "";
+
     std::string json_payload = R"({
       "contents": [{
         "parts":[{
@@ -33,7 +39,12 @@ int main(int argc, char *argv[]) {
 
     try {
         aix::HttpClient client;
-        std::string gemini_response = client.post(url, json_payload);
+        std::future<std::string> future_response =
+            std::async(std::launch::async, [&]() { return client.post(url, json_payload); });
+
+        aix::RunSpinner(future_response);
+
+        gemini_response = future_response.get();
 
         auto parser = aix::ParserFactory::createParser(aix::ProviderType::Gemini);
 

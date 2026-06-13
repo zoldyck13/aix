@@ -27,9 +27,19 @@ std::vector<std::string> GeminiParser::parseAvailableModels(const std::string &r
 std::string GeminiParser::parseChatResponse(const std::string &rawJson) {
     try {
         auto data = json::parse(rawJson);
+
+        if (data.contains("error")) {
+            if (data["error"].contains("message")) {
+                return data["error"]["message"].get<std::string>();
+            }
+            return "API Error occurred, but no message was provided.";
+        }
+
         return data["candidates"][0]["content"]["parts"][0]["text"].get<std::string>();
+    } catch (const std::exception &e) {
+        return "Error parsing Gemini chat response: " + std::string(e.what());
     } catch (...) {
-        return "Error parsing Gemini chat response";
+        return "Unknown error parsing Gemini chat response";
     }
 }
 
