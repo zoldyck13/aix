@@ -8,7 +8,6 @@
 
 namespace aix {
 std::string HttpClient::post(const std::string &url, const std::string &json_payload) {
-    curlpp::Cleanup cleanup;
     curlpp::Easy request;
 
     try {
