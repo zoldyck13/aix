@@ -7,6 +7,6 @@ class AIRenderer {
     AIRenderer() = default;
     ~AIRenderer() = default;
 
-    static void RenderMarkdown(const std::string &markdown_content);
+    static std::string RenderMarkdown(const std::string &markdown_content);
 };
 } // namespace aix

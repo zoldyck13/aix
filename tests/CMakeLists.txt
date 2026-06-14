@@ -37,3 +37,13 @@ add_executable(api_handler_test_runner ${API_HANDLER_TEST_FILES})
 target_link_libraries(api_handler_test_runner PRIVATE nlohmann_json::nlohmann_json Catch2::Catch2 Catch2::Catch2WithMain)
 target_include_directories(api_handler_test_runner PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
 add_test(NAME Api_Tests COMMAND api_handler_test_runner)
+
+
+set(FORMATTER_TEST_FILES
+    test_formatter.cpp
+    ../src/cli/formatter.cpp
+)
+add_executable(formatter_test_runner ${FORMATTER_TEST_FILES})
+target_link_libraries(formatter_test_runner PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)
+target_include_directories(formatter_test_runner PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src)
+add_test(NAME Formatter_Tests COMMAND formatter_test_runner)

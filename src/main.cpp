@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     std::string json_payload = R"({
       "contents": [{
         "parts":[{
-          "text": "This is a test from our netowrk curl test"
+          "text": "Write for me an bash code print hello world, and explain the code"
         }]
       }]
     })";
@@ -50,7 +50,9 @@ int main(int argc, char *argv[]) {
 
         std::string parser_result = parser->parseChatResponse(gemini_response);
 
-        aix::AIRenderer::RenderMarkdown(parser_result);
+        std::string output = aix::AIRenderer::RenderMarkdown(parser_result);
+
+        std::cout << output << std::endl;
 
     } catch (std::exception &e) {
         std::cout << "Parser or Https request Error: " << e.what() << std::endl;
