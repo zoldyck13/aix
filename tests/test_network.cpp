@@ -1,32 +1,17 @@
 // tests/test_network.cpp
 #include "../src/network/http_client.hpp"
-#include <cstdlib>
-#include <iostream>
+#include <catch2/catch_test_macros.hpp>
+#include <string>
 
-int main() {
+TEST_CASE("Network_Tests - HttpClient POST Functionality", "[network]") {
     aix::HttpClient client;
 
     std::string url = "https://postman-echo.com/post";
 
     std::string json_payload = R"({"title": "test", "body": "testing aix network module"})";
 
-    std::cout << "Sending POST request to " << url << "...\n";
+    std::string response = client.post(url, json_payload);
 
-    try {
-        std::string response = client.post(url, json_payload);
-
-        std::cout << "Response received successfully:\n" << response << "\n";
-
-        if (response.empty() || response.find("testing aix network module") == std::string::npos) {
-            std::cerr << "Test Failed: Response is empty or data mismatch!\n";
-            return EXIT_FAILURE;
-        }
-
-    } catch (const std::exception &e) {
-        std::cerr << "Test Crashed with exception: " << e.what() << "\n";
-        return EXIT_FAILURE;
-    }
-
-    std::cout << "Network POST Test Passed successfully!\n";
-    return EXIT_SUCCESS;
+    REQUIRE_FALSE(response.empty());
+    REQUIRE(response.find("testing aix network module") != std::string::npos);
 }

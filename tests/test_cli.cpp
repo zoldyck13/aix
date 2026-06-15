@@ -1,11 +1,11 @@
 #include "../src/cli/arg_parser.hpp"
-#include <cstdlib>
-#include <execution>
-#include <iostream>
+#include <catch2/catch_test_macros.hpp>
 
-int main() {
+TEST_CASE("CLI_TEST - ArgParser Line Extraction Validation", "[cli]") {
     aix::ArgParser parser;
     aix::ConfigOptions options;
+    options.sed_start_line = 0;
+    options.sed_end_line = 0;
 
     char *argv[] = {
         (char *)"aix",
@@ -13,19 +13,8 @@ int main() {
         (char *)"4,6p",
     };
 
-    try {
-        parser.ParseArgument(3, argv, options);
-    } catch (const std::exception &e) {
-        std::cerr << "Test Failed: CLI parser threw an unexpected exception: " << e.what() << "\n";
-        return EXIT_FAILURE;
-    }
+    parser.ParseArgument(3, argv, options);
 
-    if (options.sed_start_line != 4 || options.sed_end_line != 6) {
-        std::cerr << "Test Failed: Mismatch in parsed lines! Expected start=4, end=6. Got start="
-                  << options.sed_start_line << ", end=" << options.sed_end_line << "\n";
-        return EXIT_FAILURE;
-    }
-
-    std::cout << "CLI Parsing Test Passed Successfully!\n";
-    return EXIT_SUCCESS;
+    REQUIRE(options.sed_start_line == 4);
+    REQUIRE(options.sed_end_line == 6);
 }

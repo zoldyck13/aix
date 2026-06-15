@@ -1,10 +1,8 @@
 #include "../src/utils/file_system.hpp"
-#include <cstdlib>
+#include <catch2/catch_test_macros.hpp>
 #include <fstream>
-#include <iostream>
-#include <string>
 
-int main() {
+TEST_CASE("Utils_TEST - ReadFileContent Extraction Validation", "[file_system]") {
     std::string test_file = "test_dummy.txt";
     std::ofstream out(test_file);
 
@@ -21,18 +19,9 @@ int main() {
     int end_line = 6;
 
     std::string context = aix::ReadFileContents(test_file, start_line, end_line);
-
     std::remove(test_file.c_str());
 
     std::string expected_output = "Line 5: Hello\nLine 6: World\n";
-
-    if (context != expected_output) {
-        std::cerr << "Test Failed!\n";
-        std::cerr << "Expected:\n" << expected_output;
-        std::cerr << "Got:\n" << context;
-        return EXIT_FAILURE;
-    }
-
-    std::cout << "Utils FileSystem Test Passed Successfully!\n";
-    return EXIT_SUCCESS;
+    REQUIRE_FALSE(context.empty());
+    REQUIRE(context == expected_output);
 }
