@@ -61,4 +61,16 @@ void RunSpinner(const std::future<std::string> &future_reslut) {
     }
     std::cout << "\r" << std::endl;
 }
+
+std::string EnvAPIKey(const std::string &env_var) {
+    const char *env_key = std::getenv(env_var.c_str());
+
+    if (env_key != nullptr) {
+        std::string api_value(env_key);
+        return api_value;
+    } else {
+        std::cout << "API key in environment variable not found. \n";
+        return "";
+    }
+}
 } // namespace aix

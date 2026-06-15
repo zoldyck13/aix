@@ -9,4 +9,6 @@ std::string ReadFileContents(const std::string &file_path, const int &start_line
                              const int &end_line_number);
 
 void RunSpinner(const std::future<std::string> &future_reslut);
+
+std::string EnvAPIKey(const std::string &env_var);
 } // namespace aix

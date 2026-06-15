@@ -20,6 +20,10 @@ ConfigOptions ArgParser::ParseArgument(const int argc, char **argv, ConfigOption
         aix.add_option("--file-path", options.file_path, "Location of the file");
     }
 
+    if (aix.get_option_no_throw("--env-var") == nullptr) {
+        aix.add_option("--env-var", options.env_var, "Env varaible message");
+    }
+
     try {
         aix.parse(argc, argv);
         std::tie(options.sed_start_line, options.sed_end_line) =

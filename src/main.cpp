@@ -1,5 +1,5 @@
 // src/main.cpp
-// #include "cli/arg_parser.hpp"
+#include "cli/arg_parser.hpp"
 #include "cli/formatter.hpp"
 #include "network/api_handler.hpp"
 #include "network/http_client.hpp"
@@ -9,19 +9,18 @@
 #include <exception>
 #include <future>
 #include <iostream>
+#include <system_error>
 
 int main(int argc, char *argv[]) {
-    /// aix::ArgParser parser;
-    // aix::ConfigOptions options;
+    aix::ArgParser parser;
+    aix::ConfigOptions options;
 
-    /*try {
+    try {
         parser.ParseArgument(argc, argv, options);
     } catch (const std::exception &e) {
         std::cerr << "Error parsing arguments: " << e.what() << "\n";
         return EXIT_FAILURE;
-    }*/
-
-    // std::cout << "aix executed successfully with specified configurations.\n";
+    }
 
     curlpp::Cleanup cleanup;
     std::string gemini_response = "";
@@ -29,13 +28,19 @@ int main(int argc, char *argv[]) {
     std::string json_payload = R"({
       "contents": [{
         "parts":[{
-          "text": "Write for me an bash code print hello world, and explain the code"
+          "text": "Write for me an bash code print hello world"
         }]
       }]
     })";
 
+    std::string env_key_api = aix::EnvAPIKey(options.env_var);
+
     std::string url = "https://generativelanguage.googleapis.com/v1beta/models/"
-                      "gemini-2.5-flash:generateContent?key=";
+                      "gemini-2.5-flash:generateContent?key=" +
+                      env_key_api;
+
+    if (options.env_var.empty())
+        return EXIT_FAILURE;
 
     try {
         aix::HttpClient client;
@@ -53,9 +58,8 @@ int main(int argc, char *argv[]) {
         std::string output = aix::AIRenderer::RenderMarkdown(parser_result);
 
         std::cout << output << std::endl;
-
     } catch (std::exception &e) {
-        std::cout << "Parser or Https request Error: " << e.what() << std::endl;
+        std::cout << "Parser of Http request Error: " << e.what() << std::endl;
         return EXIT_FAILURE;
     }
 

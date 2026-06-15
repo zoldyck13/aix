@@ -20,7 +20,7 @@ std::string AIRenderer::RenderMarkdown(const std::string &markdown_content) {
     temp_file << markdown_content;
     temp_file.close();
 
-    std::string command = "CLICOLOR_FORCE=1 glow --width 80 " + temp_filename + " 2>&1";
+    std::string command = "CLICOLOR_FORCE=1 glow -s dracula " + temp_filename + " 2>&1";
 
     FILE *pipe = popen(command.c_str(), "r");
 
