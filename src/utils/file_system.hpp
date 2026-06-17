@@ -11,4 +11,6 @@ std::string ReadFileContents(const std::string &file_path, const int &start_line
 void RunSpinner(const std::future<std::string> &future_reslut);
 
 std::string EnvAPIKey(const std::string &env_var);
+
+void animateText(const std::string &text, int delay_ms = 50);
 } // namespace aix
