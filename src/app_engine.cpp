@@ -45,7 +45,8 @@ int AppEngine::Run(const aix::ConfigOptions &options) {
         std::string parser_result = parser->parseChatResponse(gemini_response);
 
         std::string output = aix::AIRenderer::RenderMarkdown(parser_result);
-        std::cout << output << "\n";
+
+        aix::animateText(output, 4);
 
         return EXIT_SUCCESS;
 

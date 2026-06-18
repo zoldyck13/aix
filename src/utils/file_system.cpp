@@ -1,4 +1,5 @@
 #include "file_system.hpp"
+#include <cctype>
 #include <chrono>
 #include <cstdlib>
 #include <fstream>
@@ -72,5 +73,39 @@ std::string EnvAPIKey(const std::string &env_var) {
         std::cout << "API key in environment variable not found. \n";
         return "";
     }
+}
+
+void animateText(const std::string &text, int delay_ms) {
+    size_t i = 0;
+    while (i < text.length()) {
+
+        if (std::isspace(static_cast<unsigned char>(text[i]))) {
+            std::string spaces = "";
+            while (i < text.length() && std::isspace(static_cast<unsigned char>(text[i]))) {
+                spaces += text[i];
+                i++;
+            }
+            std::cout << spaces << std::flush;
+            continue;
+        }
+
+        if (text[i] == '\033' || text[i] == '\x1B') {
+            while (i < text.length()) {
+                std::cout << text[i];
+                if (i > 0 && std::isalpha(static_cast<unsigned char>(text[i]))) {
+                    i++;
+                    break;
+                }
+                i++;
+            }
+            std::cout << std::flush;
+            continue;
+        }
+
+        std::cout << text[i] << std::flush;
+        std::this_thread::sleep_for(std::chrono::milliseconds(delay_ms));
+        i++;
+    }
+    std::cout << '\n';
 }
 } // namespace aix
