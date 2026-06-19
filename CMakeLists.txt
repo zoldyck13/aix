@@ -8,6 +8,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 find_package(CLI11 REQUIRED)
 find_package(nlohmann_json REQUIRED)
 find_package(CURL REQUIRED)
+find_package(tomlplusplus REQUIRED)
 
 find_library(CURLPP_LIBRARY NAMES curlpp REQUIRED)
 find_path(CURLPP_INCLUDE_DIR NAMES curlpp/cURLpp.hpp REQUIRED)
@@ -26,16 +27,17 @@ endif()
 
 message(STATUS "Found glow: ${GLOW_BIN}")
 
-set(POJECT_SOURCES
+set(PROJECT_SOURCES
     src/cli/arg_parser.cpp 
     src/cli/formatter.cpp
     src/network/http_client.cpp
     src/utils/file_system.cpp
     src/network/api_handler.cpp
+    src/core/config_manager.cpp
     src/app_engine.cpp
 )
 
-add_library(aix_core STATIC ${POJECT_SOURCES})
+add_library(aix_core STATIC ${PROJECT_SOURCES})
 
 target_include_directories(aix_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_include_directories(aix_core PRIVATE
@@ -51,6 +53,7 @@ target_link_libraries(aix_core PRIVATE
     CURL::libcurl
     CLI11::CLI11
     nlohmann_json::nlohmann_json
+    tomlplusplus::tomlplusplus
 )
 
 add_executable(aix src/main.cpp)

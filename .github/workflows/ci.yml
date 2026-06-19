@@ -30,6 +30,9 @@ jobs:
         echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
         sudo apt update && sudo apt install glow
 
+    - name: Install tomlplusplus
+      run: sudo apt-get install -y libtomlplusplus-dev
+
     - name: Configure CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
 
