@@ -2,6 +2,7 @@
 #include <cctype>
 #include <chrono>
 #include <cstdlib>
+#include <filesystem>
 #include <fstream>
 #include <future>
 #include <iostream>
@@ -107,5 +108,18 @@ void animateText(const std::string &text, int delay_ms) {
         i++;
     }
     std::cout << '\n';
+}
+
+std::string GetConfigPath() {
+    const char *home = std::getenv("HOME");
+    if (!home) {
+        return "config.toml";
+    }
+
+    std::filesystem::path config_dir = std::filesystem::path(home) / ".config" / "aix";
+
+    std::filesystem::create_directories(config_dir);
+
+    return (config_dir / "config.toml").string();
 }
 } // namespace aix
